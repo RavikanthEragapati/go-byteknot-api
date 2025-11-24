@@ -13,10 +13,12 @@ import (
 func NewMySQLConnection(config *configs.Config) (*sql.DB, error) {
 	log.Println("Establishing DB Connection...")
 	conf := mysql.Config{
-		User:   config.Database.User,
-		Passwd: config.Database.Pass,
-		Net:    config.Database.Net,
-		Addr:   config.Database.Addr,
+		User:      config.Database.User,
+		Passwd:    config.Database.Pass,
+		Net:       config.Database.Net,
+		Addr:      config.Database.Addr,
+		DBName:    config.Database.DBName,
+		ParseTime: true,
 	}
 	db, err := sql.Open("mysql", conf.FormatDSN())
 	if err != nil {
@@ -34,6 +36,6 @@ func NewMySQLConnection(config *configs.Config) (*sql.DB, error) {
 		return nil, fmt.Errorf("error pinging database: %w", err)
 	}
 
-	fmt.Println("Successfully connected to the database!")
+	log.Println("Successfully connected to the database!")
 	return db, nil
 }
