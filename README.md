@@ -5,7 +5,12 @@ Backend of byteknot.com that exposes API to create/update/serve articles and als
 https://github.com/golang-standards/project-layout
 
 # Prerequisite 
+
+Install MySQL
+
+```cmd
 brew install mysql@8.4
+```
 
 by default brew installs MySQL database without a root password. To secure it run:
     `mysql_secure_installation`
